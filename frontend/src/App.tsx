@@ -1,10 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState, useEffect} from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // Fungsi untuk mengetes koneksi
+    const testKoneksi = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/halo');
+        const data = await response.json();
+
+        // Log hasil ke console browser
+        console.log('--- TEST KONEKSI ---');
+        console.log('Status:', response.status);
+        console.log('Data dari Backend:', data.pesan);
+      } catch (error) {
+        console.error('Gagal terhubung ke backend:', error);
+      }
+    };
+
+    testKoneksi();
+  }, []);
 
   return (
     <>
@@ -18,18 +37,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
