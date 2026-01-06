@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json  # opsional, biasanya tetap di-commit
+yarn.lock          # jika pakai yarn
+
+# Environment variables
+.env
+.env.local
+
+# Build/output folders
+dist/
+build/
+
+# OS/filesystem junk
+.DS_Store
+Thumbs.db
