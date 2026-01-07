@@ -13,6 +13,7 @@ function App() {
 
         console.log('--- TEST KONEKSI ---');
         console.log('Status:', response.status);
+        console.log('StatusDB:', data.databaseStatus);
         console.log('Data dari Backend:', data.pesan);
       } catch (error) {
         console.error('Gagal terhubung ke backend:', error);
