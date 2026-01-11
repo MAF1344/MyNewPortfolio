@@ -1,9 +1,8 @@
-import {motion} from 'framer-motion';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {FaSun, FaMoon} from 'react-icons/fa'; // FontAwesome
-// atau
+import {FaSun, FaMoon} from 'react-icons/fa';
 import {HiSun, HiMoon} from 'react-icons/hi2'; // Heroicons (dari Tailwind)
+import {AnimatePresence, motion} from 'framer-motion';
 
 export default function Navbar() {
   const [dark, setDark] = useState(false);
@@ -24,8 +23,12 @@ export default function Navbar() {
         <Link to="/" className="hover:text-blue-500">
           Home
         </Link>
-        <motion.button whileTap={{scale: 0.9}} whileHover={{rotate: 50}} onClick={() => setDark(!dark)} className="cursor-pointer p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:ring-2 ring-blue-500 transition-all">
-          {dark ? <HiSun className="text-xl" /> : <HiMoon className="text-xl" />}
+        <motion.button whileHover={{rotate: 50, scale: 1.3}} onClick={() => setDark(!dark)} className="p-2 overflow-hidden">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={dark ? 'dark' : 'light'} initial={{y: -20, opacity: 0, rotate: -90}} animate={{y: 0, opacity: 1, rotate: 0}} exit={{y: 20, opacity: 0, rotate: 90}} transition={{duration: 0.2}}>
+              {dark ? <HiSun className="text-yellow-400" /> : <HiMoon className="text-slate-700" />}
+            </motion.div>
+          </AnimatePresence>
         </motion.button>
       </div>
     </nav>
