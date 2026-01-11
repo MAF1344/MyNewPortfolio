@@ -1,3 +1,4 @@
+import {motion} from 'framer-motion';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
@@ -20,9 +21,9 @@ export default function Navbar() {
         <Link to="/" className="hover:text-blue-500">
           Home
         </Link>
-        <button onClick={() => setDark(!dark)} className="cursor-pointer p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:ring-2 ring-blue-500 transition-all">
+        <motion.button whileTap={{scale: 0.9}} whileHover={{rotate: 10}} onClick={() => setDark(!dark)} className="cursor-pointer p-2 bg-gray-100 dark:bg-gray-800 rounded-full hover:ring-2 ring-blue-500 transition-all">
           {dark ? 'Light Mode' : 'Dark Mode'}
-        </button>
+        </motion.button>
       </div>
     </nav>
   );
