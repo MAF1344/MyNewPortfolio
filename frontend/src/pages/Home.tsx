@@ -1,4 +1,5 @@
 import {useQuery} from '@tanstack/react-query';
+import {motion} from 'framer-motion';
 
 // Definisikan tipe data sesuai Model Backend kamu
 interface Project {
@@ -36,27 +37,39 @@ export default function Home() {
       </section>
       <section>
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">My Projects</h2>
-          <p className="opacity-70 text-lg">Daftar karya yang telah saya buat.</p>
+          <motion.div initial={{opacity: 0, scale: 0.9}} whileInView={{opacity: 1, scale: 1}} viewport={{once: true}} className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">My Projects</h2>
+            <p className="opacity-70 text-lg">Daftar karya yang telah saya buat.</p>
+          </motion.div>
         </div>
 
         {/* 3. Grid Project */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data?.map((project) => (
-            <div key={project._id} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-transform hover:scale-105">
-              <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-sm opacity-80 mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-xs font-semibold rounded-full">
-                      {tech}
-                    </span>
-                  ))}
+          {data?.map((project, index) => (
+            <motion.div
+              key={project._id}
+              // Animasi saat scroll: muncul satu per satu (stagger)
+              initial={{opacity: 0, y: 50}}
+              whileInView={{opacity: 1, y: 0}}
+              viewport={{once: true}}
+              transition={{delay: index * 0.1}} // Card muncul bergantian
+              // Hover Effects dengan Tailwind v4
+              className="group relative bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-slate-200 dark:border-slate-800 transition-all duration-300">
+              <div key={project._id} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-transform hover:scale-105">
+                <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-sm opacity-80 mb-4 line-clamp-2">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 text-xs font-semibold rounded-full">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
