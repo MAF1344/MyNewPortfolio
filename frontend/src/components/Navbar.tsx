@@ -20,8 +20,11 @@ export default function Navbar() {
     <nav className="flex justify-between items-center p-4 bg-white shadow-md dark:bg-gray-900 dark:text-white transition-colors">
       <h1 className="text-xl font-bold">MyPortfolio</h1>
       <div className="flex items-center space-x-6">
-        <Link to="/" className="hover:text-blue-500">
+        <Link to="/" className="hover:text-blue-500 transition-colors">
           Home
+        </Link>
+        <Link to="/contact" className="hover:text-blue-500 transition-colors">
+          Contact
         </Link>
         <motion.button whileHover={{rotate: 50, scale: 1.3}} onClick={() => setDark(!dark)} className="p-2 overflow-hidden">
           <AnimatePresence mode="wait" initial={false}>

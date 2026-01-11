@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* Route yang diproteksi */}
           <Route element={<ProtectedRoute />}>

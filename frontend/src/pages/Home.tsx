@@ -1,5 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import {motion} from 'framer-motion';
+import { useEffect } from 'react';
 
 // Definisikan tipe data sesuai Model Backend kamu
 interface Project {
@@ -21,6 +22,16 @@ export default function Home() {
     },
   });
 
+  useEffect(() => {
+    document.title = 'Fatih | Fullstack Developer Portfolio';
+
+    // Mengubah Meta Description secara manual
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Portfolio Fatih menggunakan MERN Stack');
+    }
+  }, []);
+
   // 1. Loading State
   if (isLoading) return <div className="text-center py-20 animate-pulse">Memuat proyek...</div>;
 
@@ -28,7 +39,7 @@ export default function Home() {
   if (error) return <div className="text-center py-20 text-red-500">Error: {(error as Error).message}</div>;
 
   return (
-    <div>
+    <div className="home-page">
       <section className="flex flex-col items-center justify-center min-h-[50vh] text-center">
         <h2 className="text-6xl font-black tracking-tight mb-4">
           Hi, Saya <span className="text-blue-500">Muhammad Al Fatih</span>
