@@ -3,6 +3,7 @@ import './index.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import Home from './pages/Home';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -10,6 +11,12 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path="login" element={<Login />} />
+
+          {/* Route yang diproteksi */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="admin" element={<AdminDashboard />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
