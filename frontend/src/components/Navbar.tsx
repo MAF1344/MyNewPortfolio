@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {FaSun, FaMoon} from 'react-icons/fa';
 import {HiSun, HiMoon} from 'react-icons/hi2'; // Heroicons (dari Tailwind)
 import {AnimatePresence, motion} from 'framer-motion';
 

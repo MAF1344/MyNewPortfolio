@@ -17,7 +17,7 @@ export default function Contact() {
         alert('Pesan berhasil dikirim! 🚀');
         form.current?.reset();
       })
-      .catch((err) => alert('Gagal mengirim: ' + err.text))
+      .catch((err: any) => alert('Gagal mengirim: ' + err.text))
       .finally(() => setLoading(false));
   };
 
